@@ -13,6 +13,7 @@ public class DemoPresentation extends Accessor {
     Slide slide;
     slide = new Slide();
 
+    //FIXME: Mudar o nome dos métodos append, que são métodos diferentes, mas com o mesmo nome
     slide.setTitle("JabberPoint");
     slide.append(1, "Ferramenta de Apresentação de Slides");
     slide.append(2, "Copyright (c) 1996-now: Ian Darwin");

@@ -19,6 +19,7 @@ public class Slide {
     items = new Vector<SlideItem>();
   }
 
+  //FIXME: Entender o que esse método faz para mudar seu nome também
   public void append(SlideItem anItem) {
     items.addElement(anItem);
   }
@@ -31,6 +32,7 @@ public class Slide {
     title = new TextItem(0, newTitle);
   }
 
+  //FIXME: mudar nome desse Apendd para ApenddInt ou algo melhor (Entender o que faz)
   public void append(int level, String message) {
     append(new TextItem(level, message));
   }
@@ -47,6 +49,7 @@ public class Slide {
     return items.size();
   }
 
+  //TODO: Botar isso no DrawSlide
   public void draw(Graphics g, Rectangle area, ImageObserver view) {
     float scale = getScale(area);
 

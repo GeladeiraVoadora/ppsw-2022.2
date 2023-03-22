@@ -65,6 +65,7 @@ public class Presentation {
     setSlideNumber(-1);
   }
 
+  //FIXME: Mudar nome do método após entender o que faz
   public void append(Slide slide) {
     showList.add(slide);
   }
