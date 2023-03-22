@@ -8,11 +8,11 @@ public class Style {
   private static Style[] styles;
 
   private static final String FONTNAME = "Helvetica";
-  int indent;
-  Color color;
+  private int indent;
+  private Color color;
   Font font;
   int fontSize;
-  int leading;
+  private int leading;
 
   public static void createStyles() {
     styles = new Style[5];
@@ -32,17 +32,41 @@ public class Style {
   }
 
   public Style(int indent, Color color, int points, int leading) {
-    this.indent = indent;
-    this.color = color;
+    this.setIndent(indent);
+    this.setColor(color);
     font = new Font(FONTNAME, Font.BOLD, fontSize = points);
-    this.leading = leading;
+    this.setLeading(leading);
   }
 
   public String toString() {
-    return "[" + indent + "," + color + "; " + fontSize + " on " + leading + "]";
+    return "[" + getIndent() + "," + getColor() + "; " + fontSize + " on " + getLeading() + "]";
   }
 
   public Font getFont(float scale) {
     return font.deriveFont(fontSize * scale);
   }
+
+public int getLeading() {
+	return leading;
+}
+
+public void setLeading(int leading) {
+	this.leading = leading;
+}
+
+public int getIndent() {
+	return indent;
+}
+
+public void setIndent(int indent) {
+	this.indent = indent;
+}
+
+public Color getColor() {
+	return color;
+}
+
+public void setColor(Color color) {
+	this.color = color;
+}
 }
