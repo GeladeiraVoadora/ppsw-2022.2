@@ -65,13 +65,12 @@ public class Presentation {
     setSlideNumber(-1);
   }
 
-  //FIXME: Mudar nome do método após entender o que faz
-  public void append(Slide slide) {
+  public void slideAppend(Slide slide) {
     showList.add(slide);
   }
 
   public Slide getSlide(int number) {
-    if (number < 0 || number >= getSize()) {
+    if (number <= 1 || number >= getSize()) {
       return null;
     }
     return (Slide) showList.get(number);

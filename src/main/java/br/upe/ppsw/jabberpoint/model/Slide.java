@@ -1,40 +1,32 @@
 package br.upe.ppsw.jabberpoint.model;
 
-import java.awt.Graphics;
-import java.awt.Rectangle;
-import java.awt.image.ImageObserver;
 import java.util.Vector;
 
-import br.upe.ppsw.jabberpoint.view.Style;
-
 public class Slide {
-
-  public final static int WIDTH = 1200;
-  public final static int HEIGHT = 800;
-
-  protected TextItem title;
+	
+	//Coloquei as constantes com o tamanho dos slides no na classe Draw
+	
+  private TextItem title;
   protected Vector<SlideItem> items;
 
   public Slide() {
     items = new Vector<SlideItem>();
   }
 
-  //FIXME: Entender o que esse método faz para mudar seu nome também
-  public void append(SlideItem anItem) {
+  public void itemAppend(SlideItem anItem) {
     items.addElement(anItem);
   }
 
   public String getTitle() {
-    return title.getText();
+    return getTitleNotString().getText();
   }
 
   public void setTitle(String newTitle) {
-    title = new TextItem(0, newTitle);
+    setTitleNotString(new TextItem(0, newTitle));
   }
 
-  //FIXME: mudar nome desse Apendd para ApenddInt ou algo melhor (Entender o que faz)
-  public void append(int level, String message) {
-    append(new TextItem(level, message));
+  public void textAppend(int level, String message) {
+    itemAppend(new TextItem(level, message));
   }
 
   public SlideItem getSlideItem(int number) {
@@ -45,34 +37,14 @@ public class Slide {
     return items;
   }
 
-  public int getSize() {
-    return items.size();
-  }
 
-  //TODO: Botar isso no DrawSlide
-  public void draw(Graphics g, Rectangle area, ImageObserver view) {
-    float scale = getScale(area);
+  public TextItem getTitleNotString() {
+	return title;
+}
 
-    int y = area.y;
 
-    SlideItem slideItem = this.title;
-    Style style = Style.getStyle(slideItem.getLevel());
-    slideItem.draw(area.x, y, scale, g, style, view);
+  public void setTitleNotString(TextItem title) {
+	this.title = title;
+}
 
-    y += slideItem.getBoundingBox(g, view, scale, style).height;
-
-    for (int number = 0; number < getSize(); number++) {
-      slideItem = (SlideItem) getSlideItems().elementAt(number);
-
-      style = Style.getStyle(slideItem.getLevel());
-      slideItem.draw(area.x, y, scale, g, style, view);
-
-      y += slideItem.getBoundingBox(g, view, scale, style).height;
-    }
-  }
-
-  private float getScale(Rectangle area) {
-    return Math.min(((float) area.width) / ((float) WIDTH),
-        ((float) area.height) / ((float) HEIGHT));
-  }
 }

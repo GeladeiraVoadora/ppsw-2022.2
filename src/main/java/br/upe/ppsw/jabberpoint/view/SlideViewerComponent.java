@@ -35,7 +35,7 @@ public class SlideViewerComponent extends JComponent {
   }
 
   public Dimension getPreferredSize() {
-    return new Dimension(Slide.WIDTH, Slide.HEIGHT);
+    return new Dimension(Draw.WIDTH, Draw.HEIGHT);
   }
 
   public void update(Presentation presentation, Slide data) {
@@ -65,7 +65,8 @@ public class SlideViewerComponent extends JComponent {
 
     Rectangle area = new Rectangle(0, YPOS, getWidth(), (getHeight() - YPOS));
 
-    slide.draw(g, area, this);
+    DrawSlide drawSlide = new DrawSlide();
+	drawSlide.draw(g, area, this);
   }
 
 }

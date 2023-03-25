@@ -64,7 +64,7 @@ public class XMLAccessor extends Accessor {
 
         Slide slide = new Slide();
         slide.setTitle(getTitle(xmlSlide, SLIDETITLE));
-        presentation.append(slide);
+        presentation.slideAppend(slide);
 
         NodeList slideItems = xmlSlide.getElementsByTagName(ITEM);
         maxItems = slideItems.getLength();
@@ -102,10 +102,10 @@ public class XMLAccessor extends Accessor {
 
     String type = attributes.getNamedItem(KIND).getTextContent();
     if (TEXT.equals(type)) {
-      slide.append(new TextItem(level, item.getTextContent()));
+      slide.itemAppend(new TextItem(level, item.getTextContent()));
     } else {
       if (IMAGE.equals(type)) {
-        slide.append(new BitmapItem(level, item.getTextContent()));
+        slide.itemAppend(new BitmapItem(level, item.getTextContent()));
       } else {
         System.err.println(UNKNOWNTYPE);
       }
